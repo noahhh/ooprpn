@@ -19,11 +19,11 @@ class RPN
   end
 
   def is_a_number?(a)
-    true if Float(a) rescue false
+    a =~ /[0-9]/  # need to figure this out/change it
   end
 
   def add_to_array(a)
-  @evaluation << a.to_f
+    @evaluation << a.to_f
   end
 
   def is_quit_command?(a)
@@ -31,7 +31,7 @@ class RPN
   end
 
   def is_a_character?(a)
-    /[a-zA-Z]/
+    a =~ /[a-zA-Z]/  # need to figure this out/change it
   end
 
   def user_asked_to_quit?
@@ -58,7 +58,7 @@ class RPN
       end
       end
       if evaluation_exists?
-     puts @evaluation.last
+        puts @evaluation.last
       end
     end
   end
