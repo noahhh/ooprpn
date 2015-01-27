@@ -19,7 +19,7 @@ class RPN
   end
 
   def is_a_number?(a)
-    a =~ /[0-9]/  # need to figure this out/change it
+    a.match(/[0-9]/)
   end
 
   def add_to_array(a)
@@ -31,11 +31,7 @@ class RPN
   end
 
   def is_a_character?(a)
-    a =~ /[a-zA-Z]/  # need to figure this out/change it
-  end
-
-  def user_asked_to_quit?
-    @evaluation.include?('q')
+    a.match(/[a-zA-Z]/)
   end
 
   def evaluation_exists?
@@ -43,7 +39,7 @@ class RPN
   end
 
   def evaluate
-    until user_asked_to_quit?
+    loop {
       input = gets.chomp.split 
       input.each do |a|
       if is_an_operator?(a)
@@ -60,7 +56,7 @@ class RPN
       if evaluation_exists?
         puts @evaluation.last
       end
-    end
+    }
   end
 end
 
