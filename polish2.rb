@@ -18,11 +18,15 @@ class RPN
   end
 
   def is_a_number?(token)
-    token.match(/\d+(\.\d+)?/)
+      token.match(/\d+(\.\d+)?/)
   end
 
   def add_to_array(token)
-    @stack << token.to_f
+    if token != "0" && token != "-0"
+      @stack << token.to_f
+    else
+      puts "please enter a number other than 0"
+    end
   end
 
   def is_quit_command?(token)
@@ -35,8 +39,8 @@ class RPN
 
   def evaluate
     loop do
-      input = gets.chomp.split 
-      input.each do |token|
+      @input = gets.chomp.split
+      @input.each do |token|
       if is_an_operator?(token)
         calculate(token)
       elsif is_a_number?(token)
