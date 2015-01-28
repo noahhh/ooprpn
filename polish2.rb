@@ -10,8 +10,8 @@ class RPN
 
   def calculate(token)
     if @stack.size > 1
-      symbols = @stack.pop(2)
-      @stack.push(symbols[0].send(token, symbols[1])) 
+      lhs, rhs = @stack.pop(2)
+      @stack.push(lhs.send(token, rhs)) 
     else 
       warn "Please enter more than one number first."
     end
@@ -25,7 +25,7 @@ class RPN
     if token != "0" && token != "-0"
       @stack << token.to_f
     else
-      puts "please enter a number other than 0"
+      warn "please enter a number other than 0."
     end
   end
 
@@ -33,7 +33,7 @@ class RPN
     ["q", "quit", "exit"].include?(token)
   end
 
-  def evaluation_exists?
+  def stack_exists?
     @stack.last != nil
   end
 
@@ -52,7 +52,7 @@ class RPN
         warn "Please enter a number or valid operation."
       end
       end
-      if evaluation_exists?
+      if stack_exists?
         puts @stack.last
       end
     end
