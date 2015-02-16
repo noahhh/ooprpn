@@ -37,6 +37,10 @@ class RPN
     @stack.last != nil
   end
 
+  def stack_number
+    puts @stack.last
+  end
+
   def evaluate
     loop do
       @input = gets.chomp.split
@@ -53,7 +57,7 @@ class RPN
       end
       end
       if stack_exists?
-        puts @stack.last
+        stack_number
       end
     end
   end
